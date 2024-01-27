@@ -1,4 +1,5 @@
 import Navbar from "../../components/navbar/navbar.jsx";
+import ProdutoVitrine from "../../components/produto-vitrine/produto-vitrine.jsx";
 
 function Home() {
   return (
@@ -13,7 +14,12 @@ function Home() {
           </p>
         </div>
       </div>
-      Lista de Produtos <br />
+      <div className="text-center">
+        <ProdutoVitrine />
+        <ProdutoVitrine />
+        <ProdutoVitrine />
+        <ProdutoVitrine />
+      </div>
     </>
   );
 }
