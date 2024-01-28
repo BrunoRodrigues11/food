@@ -35,8 +35,8 @@
 }
 
 .footer-produto-qtd {
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .footer-produto-preco {
@@ -44,4 +44,6 @@
   font-size: 1rem;
   font-weight: bold;
   line-height: 1rem;
+  display: inline-block;
+  width: 100px;
 }

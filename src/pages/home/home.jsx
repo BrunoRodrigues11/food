@@ -1,5 +1,6 @@
 import Navbar from "../../components/navbar/navbar.jsx";
 import ProdutoVitrine from "../../components/produto-vitrine/produto-vitrine.jsx";
+import { produtos } from "../../dados.js";
 
 function Home() {
   return (
@@ -15,10 +16,18 @@ function Home() {
         </div>
       </div>
       <div className="text-center">
-        <ProdutoVitrine />
-        <ProdutoVitrine />
-        <ProdutoVitrine />
-        <ProdutoVitrine />
+        {produtos.map((produtos) => {
+          return (
+            <ProdutoVitrine
+              key={produtos.id}
+              id={produtos.id}
+              nome={produtos.nome}
+              descricao={produtos.descricao}
+              preco={produtos.preco}
+              foto={produtos.foto}
+            />
+          );
+        })}
       </div>
     </>
   );

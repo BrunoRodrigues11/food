@@ -3,6 +3,7 @@ import { Dock } from "react-dock";
 import ProcutoCart from "../produto-cart/produto-cart.jsx";
 import "./cart.css";
 import { useNavigate } from "react-router-dom";
+import { carrinho } from "../../dados.js";
 
 function Cart() {
   // O estado "show" controla se a sidebar está aberta ou fechada
@@ -11,12 +12,17 @@ function Cart() {
   // O hook "useNavigate" é usado para navegar entre as páginas
   const navigate = useNavigate();
 
+  const [cartItens, setCartItens] = useState([]);
+
   // O hook "useEffect" é usado para executar um código quando o componente é montado
   useEffect(() => {
     // Fica ouvindo o evento "openSidebar" e abre a sidebar quando ele é disparado
     window.addEventListener("openSidebar", () => {
       setShow(true);
+      console.log("Sidebar aberta:", show);
     });
+
+    setCartItens(carrinho);
   }, []);
 
   // Função para navegar para a página de checkout
@@ -39,8 +45,18 @@ function Cart() {
       </div>
 
       <div className="lista-produtos">
-        <ProcutoCart />
-        <ProcutoCart />
+        {cartItens.map((item) => {
+          return (
+            <ProcutoCart
+              key={item.id}
+              id={item.id}
+              foto={item.foto}
+              nome={item.nome}
+              qtd={item.qtd}
+              preco={item.preco}
+            />
+          );
+        })}
       </div>
 
       <div className="footer-cart">

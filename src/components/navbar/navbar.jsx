@@ -17,7 +17,7 @@ function Navbar(props) {
 
       {
         // Se a propriedade showMenu for verdadeira, então renderiza o menu
-        props.showMenu ? (
+        props.showMenu && (
           <div className="menu">
             <Link to="/historico">Histórico</Link>
             <button className="btn btn-red" type="button" onClick={openSidebar}>
@@ -25,7 +25,7 @@ function Navbar(props) {
               Sacola
             </button>
           </div>
-        ) : null
+        )
       }
 
       <Cart />
