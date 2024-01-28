@@ -126,6 +126,24 @@ a {
   margin: auto;
 }
 
+.text-red {
+  color: #e84f3d;
+}
+
+.text-light {
+  color: #747474;
+}
+
+/* TABLES */
+table {
+  width: 100%;
+}
+
+td {
+  border-bottom: 1px solid #cccccc;
+  padding: 15px;
+}
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 1100px) {
   .subtitulo {
