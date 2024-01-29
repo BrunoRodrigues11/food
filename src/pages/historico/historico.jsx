@@ -12,22 +12,24 @@ function Historico() {
         </div>
         <div className="box-pedido">
           <table className="table">
-            {pedidos.map((pedidos) => {
-              return (
-                <tr key={pedidos.id_pedido}>
-                  <td>
-                    <strong>Pedido {pedidos.id_pedido}</strong>
-                  </td>
-                  <td className="text-light">{pedidos.dt}</td>
-                  <td className="text-red">
-                    {new Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    }).format(pedidos.total)}
-                  </td>
-                </tr>
-              );
-            })}
+            <tbody>
+              {pedidos.map((pedidos) => {
+                return (
+                  <tr key={pedidos.id_pedido}>
+                    <td>
+                      <strong>Pedido {pedidos.id_pedido}</strong>
+                    </td>
+                    <td className="text-light">{pedidos.dt}</td>
+                    <td className="text-red">
+                      {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(pedidos.total)}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>

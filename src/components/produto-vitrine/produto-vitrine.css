@@ -8,6 +8,7 @@
 }
 
 .produto-box:hover {
+  /* background-color: #ffdeda; */
   -webkit-box-shadow: -5px 20px 22px 15px rgba(204, 204, 204, 1);
   -moz-box-shadow: -5px 20px 22px 15px rgba(204, 204, 204, 1);
   box-shadow: -5px 20px 22px 15px rgba(204, 204, 204, 1);

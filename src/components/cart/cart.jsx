@@ -4,6 +4,8 @@ import ProcutoCart from "../produto-cart/produto-cart.jsx";
 import "./cart.css";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/cart-context.jsx";
+import foto from "../../assets/close.png";
+import emptyCart from "../../assets/empty_cart.svg";
 
 function Cart() {
   // O estado "show" controla se a sidebar está aberta ou fechada
@@ -35,16 +37,35 @@ function Cart() {
       position="right"
       isVisible={show}
       fluid={false}
-      size={420}
+      size={360}
       onVisibleChange={(visible) => {
         setShow(visible);
       }}
     >
       <div className="text-center">
+        <img
+          src={foto}
+          alt="Fechar o slidebar"
+          className="cart-btn-close"
+          onClick={(e) => setShow(false)}
+        />
         <h1>Meu Pedido</h1>
       </div>
 
       <div className="lista-produtos">
+        {
+          // Se o carrinho estiver vazio, mostra uma mensagem
+          cartItens.length === 0 && (
+            <div className="text-center">
+              <img
+                src={emptyCart}
+                alt="Carrinho vazio"
+                className="cart-empty"
+              />
+              <p>Sua sacola está vazia</p>
+            </div>
+          )
+        }
         {cartItens.map((item) => {
           return (
             <ProcutoCart

@@ -3,3 +3,11 @@
   padding: 40px;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 700px) {
+  .box-pedido {
+    font-size: 0.7rem;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
