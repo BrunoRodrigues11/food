@@ -1,7 +1,26 @@
 import "./produto-cart.css";
-import foto from "../../assets/hamburguer.png";
+import { CartContext } from "../../contexts/cart-context";
+import { useContext } from "react";
 
 function ProdutoCart(props) {
+  const { AddItemCart, RemoveItemCart } = useContext(CartContext);
+
+  function AddItem() {
+    const item = {
+      id: props.id,
+      nome: props.nome,
+      preco: props.preco,
+      foto: props.foto,
+      qtd: 1,
+    };
+
+    AddItemCart(item);
+  }
+
+  function RemoveItem() {
+    RemoveItemCart(props.id);
+  }
+
   return (
     <div className="produto-cart-box">
       <img src={props.foto} alt="Foto" />
@@ -15,11 +34,19 @@ function ProdutoCart(props) {
         </p>
         <div className="footer-produto-cart">
           <div>
-            <button type="button" className="footer-produto-btn">
+            <button
+              type="button"
+              className="footer-produto-btn"
+              onClick={RemoveItem}
+            >
               -
             </button>
             <span className="footer-produto-qtd">{props.qtd}</span>
-            <button type="button" className="footer-produto-btn">
+            <button
+              type="button"
+              className="footer-produto-btn"
+              onClick={AddItem}
+            >
               +
             </button>
           </div>

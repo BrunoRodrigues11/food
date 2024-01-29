@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Dock } from "react-dock";
 import ProcutoCart from "../produto-cart/produto-cart.jsx";
 import "./cart.css";
 import { useNavigate } from "react-router-dom";
-import { carrinho } from "../../dados.js";
+import { CartContext } from "../../contexts/cart-context.jsx";
 
 function Cart() {
   // O estado "show" controla se a sidebar está aberta ou fechada
@@ -12,17 +12,17 @@ function Cart() {
   // O hook "useNavigate" é usado para navegar entre as páginas
   const navigate = useNavigate();
 
-  const [cartItens, setCartItens] = useState([]);
+  // Acessa o contexto do carrinho
+  const { cartItens, totalCart } = useContext(CartContext);
 
   // O hook "useEffect" é usado para executar um código quando o componente é montado
   useEffect(() => {
     // Fica ouvindo o evento "openSidebar" e abre a sidebar quando ele é disparado
     window.addEventListener("openSidebar", () => {
       setShow(true);
-      console.log("Sidebar aberta:", show);
     });
 
-    setCartItens(carrinho);
+    // setCartItens(carrinho);
   }, []);
 
   // Função para navegar para a página de checkout
@@ -63,7 +63,12 @@ function Cart() {
         <div className="footer-cart-valor">
           <span>Total</span>
           <span>
-            <strong>R$ 250,00</strong>
+            <strong>
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(totalCart)}
+            </strong>
           </span>
         </div>
         <div>

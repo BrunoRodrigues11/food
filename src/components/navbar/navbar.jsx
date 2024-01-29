@@ -13,15 +13,16 @@ function Navbar(props) {
 
   return (
     <div className="navbar">
-      <img src={logo} alt="Logotipo" className="logotipo" />
-
+      <Link to="/">
+        <img src={logo} alt="Logotipo" className="logotipo" />
+      </Link>
       {
         // Se a propriedade showMenu for verdadeira, então renderiza o menu
         props.showMenu && (
           <div className="menu">
             <Link to="/historico">Histórico</Link>
             <button className="btn btn-red" type="button" onClick={openSidebar}>
-              <img src={bag} className="icon" />
+              <img src={bag} className="icon" alt="icone da sacola" />
               Sacola
             </button>
           </div>
