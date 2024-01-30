@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // Criando o contexto
 const CartContext = createContext();
@@ -9,7 +9,7 @@ function CartProvider(props) {
   const [cartItens, setCartItens] = useState([]);
 
   // O estado "totalCart" armazena o valor total do carrinho
-  const [totalCart, setTotalCart] = useState(0);
+  const [totalCart, setTotalCart] = useState(undefined);
 
   // Função para adicionar um item ao carrinho
   function AddItemCart(item) {
@@ -56,6 +56,12 @@ function CartProvider(props) {
     cartItensNovo = cartItensNovo.filter((item) => item.qtd > 0);
 
     // Atuakiza o carrinho
+    if (cartItensNovo.length === 0) {
+      const jsoncartItens = JSON.stringify(cartItensNovo);
+      localStorage.setItem("cartItens", jsoncartItens);
+      localStorage.setItem("totalCart", 0);
+      setTotalCart(0);
+    }
     setCartItens(cartItensNovo);
     CalcTotal(cartItensNovo);
   }
@@ -69,6 +75,29 @@ function CartProvider(props) {
     }
   }
 
+  useEffect(() => {
+    if (cartItens.length > 0) {
+      const jsoncartItens = JSON.stringify(cartItens);
+      localStorage.setItem("cartItens", jsoncartItens);
+    }
+  }, [cartItens]);
+
+  useEffect(() => {
+    if (totalCart !== undefined) {
+      localStorage.setItem("totalCart", totalCart);
+    }
+  }, [totalCart]);
+
+  useEffect(() => {
+    const jsoncartItens = localStorage.getItem("cartItens");
+    const jsonTotalCart = localStorage.getItem("totalCart");
+
+    if (jsoncartItens && jsonTotalCart && cartItens.length === 0 && !totalCart) {
+      setCartItens(JSON.parse(jsoncartItens));
+      setTotalCart(JSON.parse(jsonTotalCart));
+    }
+  }, [cartItens, totalCart]);
+
   return (
     <CartContext.Provider
       value={{
@@ -77,6 +106,7 @@ function CartProvider(props) {
         AddItemCart,
         RemoveItemCart,
         totalCart,
+        setTotalCart,
       }}
     >
       {props.children}

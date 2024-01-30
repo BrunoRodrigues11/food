@@ -1,8 +1,23 @@
+import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar.jsx";
 import "./historico.css";
-import { pedidos } from "../../dados.js";
+import api from "../../services/api.js";
 
 function Historico() {
+  const [pedidos, setPedidos] = useState([]);
+
+  // Consome a API e atualiza o estado da aplicação com os pedidos
+  useEffect(() => {
+    api
+      .get("/pedidos")
+      .then((resp) => {
+        setPedidos(resp.data);
+      })
+      .catch((err) => {
+        alert("Erro ao carregar os pedidos");
+      });
+  }, []);
+
   return (
     <>
       <Navbar showMenu={true} />
@@ -19,7 +34,7 @@ function Historico() {
                     <td>
                       <strong>Pedido {pedidos.id_pedido}</strong>
                     </td>
-                    <td className="text-light">{pedidos.dt}</td>
+                    <td className="text-light">{pedidos.dt_pedido}</td>
                     <td className="text-red">
                       {new Intl.NumberFormat("pt-BR", {
                         style: "currency",

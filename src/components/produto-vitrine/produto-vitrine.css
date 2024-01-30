@@ -5,13 +5,17 @@
   padding: 10px 10px 20px 10px;
   display: inline-block;
   margin: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
 .produto-box:hover {
-  /* background-color: #ffdeda; */
-  -webkit-box-shadow: -5px 20px 22px 15px rgba(204, 204, 204, 1);
-  -moz-box-shadow: -5px 20px 22px 15px rgba(204, 204, 204, 1);
-  box-shadow: -5px 20px 22px 15px rgba(204, 204, 204, 1);
+  -webkit-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  -moz-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: #e84f3d solid 3px;
+  transition: all 0.3s ease-in-out;
 }
 
 .prod-vitrine-descricao {

@@ -11,11 +11,18 @@ function Cart() {
   // O estado "show" controla se a sidebar está aberta ou fechada
   const [show, setShow] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(false);
+
   // O hook "useNavigate" é usado para navegar entre as páginas
   const navigate = useNavigate();
 
   // Acessa o contexto do carrinho
   const { cartItens, totalCart } = useContext(CartContext);
+
+  // Função para navegar para a página de checkout
+  function checkout() {
+    navigate("/checkout");
+  }
 
   // O hook "useEffect" é usado para executar um código quando o componente é montado
   useEffect(() => {
@@ -27,17 +34,30 @@ function Cart() {
     // setCartItens(carrinho);
   }, []);
 
-  // Função para navegar para a página de checkout
-  function checkout() {
-    navigate("/checkout");
-  }
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width <= 1000); // Defina o limite que deseja para considerar como "mobile"
+    };
+
+    // Adiciona um listener para o evento de redimensionamento da janela
+    window.addEventListener("resize", handleResize);
+
+    // Chama o manipulador inicialmente para definir o estado inicial
+    handleResize();
+
+    // Remove o listener quando o componente é desmontado
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <Dock
       position="right"
       isVisible={show}
       fluid={false}
-      size={360}
+      size={isMobile ? 360 : 500}
       onVisibleChange={(visible) => {
         setShow(visible);
       }}
