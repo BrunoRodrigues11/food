@@ -91,10 +91,12 @@ a {
   width: 60%;
   padding: 10px;
   font-size: 1rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-cart:hover {
   background-color: #ececec;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-checkout {
@@ -108,10 +110,12 @@ a {
   background-color: #e84f3d;
   color: #fff;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-checkout:hover {
   background-color: #d24434;
+  transition: all 0.3s ease-in-out;
 }
 
 /* TEXTOS */
